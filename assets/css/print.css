@@ -1,0 +1,41 @@
+/* QuickResume – print / Save as PDF. Loaded with media="print". */
+@page flow { size: A4; margin: 12mm 0; }
+@page full { size: A4; margin: 0; }
+
+.resume--classic, .resume--minimal { page: flow; }
+.resume--modern, .resume--professional { page: full; }
+
+html, body {
+  height: auto !important;
+  overflow: visible !important;
+  background: #fff !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.skip-link, .app-header, .editor, .preview__note, .toast, .noscript { display: none !important; }
+
+.app { display: block !important; height: auto !important; }
+.preview { display: block !important; overflow: visible !important; padding: 0 !important; background: none !important; }
+.stage { display: block !important; }
+.sheet-frame { width: auto !important; height: auto !important; }
+
+.sheet {
+  width: 210mm !important;
+  min-height: 0 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.sheet::after { display: none !important; }
+
+/* Flow templates: the page margin supplies the vertical space */
+.resume--classic, .resume--minimal {
+  min-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+/* Full-bleed templates: fill the page without spilling onto a blank second page */
+.resume--modern, .resume--professional { min-height: 296mm !important; }
+
+.r-item, .r-sec > .r-h { break-inside: avoid; }
+.r-h { break-after: avoid; }

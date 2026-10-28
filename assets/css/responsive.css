@@ -1,0 +1,31 @@
+/* QuickResume – responsive layout */
+@media (max-width: 1100px) {
+  .app { grid-template-columns: minmax(340px, 420px) 1fr; }
+  .preview { padding: 20px 16px 48px; }
+}
+
+/* One pane at a time on tablets and phones */
+@media (max-width: 860px) {
+  .app { display: block; height: auto; }
+  .editor { overflow: visible; border-right: 0; }
+  .preview { overflow: visible; padding: 16px 12px 40px; }
+  .app[data-view="edit"] .preview { display: none; }
+  .app[data-view="preview"] .editor { display: none; }
+  .view-tabs { display: flex; }
+  .save-status { display: none; }
+  .header-actions { margin-left: 0; }
+  .app-header { justify-content: space-between; }
+}
+
+@media (max-width: 520px) {
+  .app-header { gap: 8px; padding: 0 12px; }
+  .brand span { display: none; }
+  .editor__inner { padding: 14px 12px; }
+  .grid { grid-template-columns: 1fr; }
+  .tpl-grid { grid-template-columns: repeat(2, 1fr); }
+  .btn--primary { padding: 0 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

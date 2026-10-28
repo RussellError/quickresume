@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects: https://developers.cloudflare.com/pages/configuration/redirects/
+# Do not add a "/* /index.html 200" rule: it would stop 404.html from being served.
+/index.html  /  301
+/home        /  301

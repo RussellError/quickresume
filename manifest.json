@@ -1,0 +1,19 @@
+{
+  "name": "QuickResume",
+  "short_name": "QuickResume",
+  "description": "Build a clean resume in minutes and download it as a PDF. Free, no sign-up.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#E6EAF0",
+  "theme_color": "#0F1B2D",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

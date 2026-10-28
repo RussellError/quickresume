@@ -1,0 +1,135 @@
+/* QuickResume – the paper sheet and the four templates.
+   Sizes use mm/pt so the preview and the printed PDF match. */
+
+.sheet {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  color: #1C2431;
+  transform-origin: top left;
+  box-shadow: 0 1px 2px rgba(15, 27, 45, .12), 0 14px 40px rgba(15, 27, 45, .16);
+}
+.sheet, .sheet * { box-sizing: border-box; }
+.sheet::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0, transparent calc(297mm - 1px),
+    rgba(200, 60, 60, .45) calc(297mm - 1px), rgba(200, 60, 60, .45) 297mm);
+}
+
+/* Shared parts */
+.resume {
+  min-height: 297mm;
+  font-size: 10pt;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.resume h1, .resume h2, .resume h3, .resume p, .resume ul { margin: 0; padding: 0; }
+.resume ul { list-style: none; }
+
+.r-name { font-size: 24pt; line-height: 1.1; font-weight: 700; }
+.r-role { margin-top: 1mm; font-size: 11.5pt; }
+.r-placeholder { opacity: .35; }
+.r-photo { display: block; flex: none; object-fit: cover; }
+.r-p { white-space: pre-line; }
+
+.r-contact { display: flex; flex-wrap: wrap; gap: 1mm 4.5mm; margin-top: 2.5mm; font-size: 9pt; color: #4A5565; }
+.r-sec { margin-top: 5.5mm; }
+.r-h { font-size: 11pt; font-weight: 700; margin-bottom: 2.4mm; }
+
+.r-item + .r-item { margin-top: 3.4mm; }
+.r-item__head { display: flex; align-items: baseline; justify-content: space-between; gap: 4mm; }
+.r-item__title { font-size: 10.5pt; font-weight: 700; }
+.r-item__sub { color: #4A5565; }
+.r-item__date { flex: none; font-size: 9pt; color: #5B6676; white-space: nowrap; }
+
+.r-bullets { margin-top: 1.2mm; }
+.r-bullets li { position: relative; padding-left: 4mm; }
+.r-bullets li + li { margin-top: .6mm; }
+.r-bullets li::before {
+  content: ""; position: absolute; left: .6mm; top: 1.9mm;
+  width: 1.2mm; height: 1.2mm; border-radius: 50%; background: var(--accent);
+}
+
+.r-tags { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+.r-tags li { padding: .7mm 2.4mm; border-radius: 1mm; background: #EEF1F6; font-size: 9pt; }
+
+/* Classic: centered, serif, ruled headings */
+.resume--classic { padding: 14mm 16mm; font-family: var(--serif); }
+.resume--classic .r-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 6mm;
+  padding-bottom: 4.5mm; border-bottom: .4mm solid var(--accent);
+}
+.resume--classic .r-top__text { flex: 1; text-align: center; }
+.resume--classic.has-photo .r-top__text { text-align: left; }
+.resume--classic .r-name { color: var(--accent); letter-spacing: .01em; }
+.resume--classic .r-role { font-style: italic; }
+.resume--classic .r-contact { justify-content: center; }
+.resume--classic.has-photo .r-contact { justify-content: flex-start; }
+.resume--classic .r-photo { width: 28mm; height: 28mm; border-radius: 50%; }
+.resume--classic .r-h {
+  padding-bottom: 1mm; border-bottom: .2mm solid #C9CFD9;
+  color: var(--accent); font-size: 12pt;
+}
+.resume--classic .r-tags li { padding: 0; border-radius: 0; background: none; }
+.resume--classic .r-tags li:not(:last-child)::after { content: ","; }
+.resume--classic .r-tags { gap: 0 1.2mm; }
+
+/* Modern: accent sidebar */
+.resume--modern {
+  display: grid; grid-template-columns: 68mm 1fr;
+  font-family: var(--sans);
+  background: linear-gradient(to right, var(--accent) 0, var(--accent) 68mm, #fff 68mm);
+}
+.resume--modern .r-side { padding: 14mm 8mm; color: #fff; }
+.resume--modern .r-side > .r-sec:first-child { margin-top: 0; }
+.resume--modern .r-side .r-photo {
+  width: 38mm; height: 38mm; margin: 0 auto 4mm;
+  border-radius: 50%; border: 1mm solid rgba(255, 255, 255, .4);
+}
+.resume--modern .r-side .r-h {
+  padding-bottom: 1mm; border-bottom: .3mm solid rgba(255, 255, 255, .4);
+  font-size: 10pt;
+}
+.resume--modern .r-side .r-contact { display: grid; gap: 1.8mm; margin: 0; color: #fff; }
+.resume--modern .r-side .r-tags li { background: rgba(255, 255, 255, .18); color: #fff; }
+.resume--modern .r-main { padding: 14mm 12mm 14mm 11mm; }
+.resume--modern .r-name { font-size: 27pt; font-weight: 800; letter-spacing: -.01em; }
+.resume--modern .r-role { color: var(--accent); font-size: 12.5pt; font-weight: 600; }
+.resume--modern .r-main .r-h {
+  padding-bottom: 1mm; border-bottom: .4mm solid var(--accent); color: var(--accent);
+}
+
+/* Minimal: quiet, left-aligned, labels in the margin */
+.resume--minimal { padding: 16mm 18mm; font-family: var(--sans); color: #222; }
+.resume--minimal .r-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6mm; }
+.resume--minimal .r-name { font-size: 28pt; font-weight: 300; letter-spacing: -.015em; }
+.resume--minimal .r-role { color: #666; }
+.resume--minimal .r-photo { width: 26mm; height: 26mm; border-radius: 2mm; }
+.resume--minimal .r-contact { margin-top: 4mm; }
+.resume--minimal .r-sec { display: grid; grid-template-columns: 30mm 1fr; column-gap: 6mm; margin-top: 7mm; }
+.resume--minimal .r-h { margin: .6mm 0 0; font-size: 9.5pt; font-weight: 700; color: var(--accent); }
+.resume--minimal .r-tags li { padding: 0; border-radius: 0; background: none; }
+.resume--minimal .r-tags li:not(:last-child)::after { content: ","; }
+.resume--minimal .r-tags { gap: 0 1.2mm; }
+
+/* Professional: accent band, main column + side column */
+.resume--professional { border-top: 6mm solid var(--accent); font-family: var(--sans); }
+.resume--professional .r-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 6mm;
+  padding: 9mm 16mm 4mm;
+}
+.resume--professional .r-name { font-family: var(--serif); font-size: 26pt; }
+.resume--professional .r-role { color: var(--accent); font-size: 12pt; font-weight: 600; }
+.resume--professional .r-photo { width: 30mm; height: 30mm; border-radius: 3mm; }
+.resume--professional .r-cols { display: grid; grid-template-columns: 1fr 60mm; gap: 8mm; padding: 0 16mm 14mm; }
+.resume--professional .r-cols > * > .r-sec:first-child { margin-top: 0; }
+.resume--professional .r-side { padding-left: 6mm; border-left: .3mm solid #D5DBE5; }
+.resume--professional .r-side .r-contact { display: grid; gap: 1.6mm; margin: 0; }
+.resume--professional .r-h {
+  padding-bottom: 1.2mm; border-bottom: .3mm solid #D5DBE5; color: var(--accent);
+}
+.resume--professional .r-tags li { background: color-mix(in srgb, var(--accent) 10%, #fff); }

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>QuickResume – Free online resume builder, PDF download</title>
+  <meta name="description" content="Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download a PDF. Free, no sign-up, and your data never leaves your device.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0F1B2D">
+  <link rel="canonical" href="https://quickresume.pages.dev/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="QuickResume">
+  <meta property="og:title" content="QuickResume – Free online resume builder">
+  <meta property="og:description" content="Pick a template, fill in your details, download a PDF. Free, no sign-up, nothing leaves your device.">
+  <meta property="og:url" content="https://quickresume.pages.dev/">
+  <meta property="og:image" content="https://quickresume.pages.dev/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="QuickResume: build a resume in minutes">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QuickResume – Free online resume builder">
+  <meta name="twitter:description" content="Pick a template, fill in your details, download a PDF. Free, no sign-up.">
+  <meta name="twitter:image" content="https://quickresume.pages.dev/assets/images/og-image.png">
+
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/form.css">
+  <link rel="stylesheet" href="/assets/css/resume.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "QuickResume",
+    "url": "https://quickresume.pages.dev/",
+    "description": "Free online resume builder with four templates and PDF download. Your data stays in your browser.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="module" src="/assets/js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#editor">Skip to editor</a>
+
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="QuickResume home">
+      <img src="/assets/images/logo.svg" alt="" width="28" height="28">
+      <span>quickresume</span>
+    </a>
+
+    <div class="view-tabs" role="tablist" aria-label="Switch view">
+      <button type="button" role="tab" id="tab-edit" aria-selected="true" aria-controls="editor">Edit</button>
+      <button type="button" role="tab" id="tab-preview" aria-selected="false" aria-controls="preview">Preview</button>
+    </div>
+
+    <div class="header-actions">
+      <span class="save-status" id="save-status" role="status" aria-live="polite"></span>
+      <button type="button" class="btn btn--primary" id="download-btn">Download PDF</button>
+    </div>
+  </header>
+
+  <main class="app" id="app" data-view="edit">
+    <noscript><p class="noscript">QuickResume needs JavaScript to build your resume. Please turn it on and reload.</p></noscript>
+
+    <section class="editor" id="editor" aria-label="Resume details">
+      <div class="editor__inner">
+        <h1 class="visually-hidden">Free online resume builder</h1>
+
+        <fieldset class="look">
+          <legend>Template</legend>
+          <div class="tpl-grid" id="template-picker"></div>
+        </fieldset>
+
+        <fieldset class="look">
+          <legend>Accent color</legend>
+          <div class="swatches" id="accent-picker"></div>
+        </fieldset>
+
+        <details class="panel" open>
+          <summary>Personal details</summary>
+          <div class="panel__body">
+            <div class="photo-row">
+              <div class="photo-slot">
+                <img id="photo-img" alt="" hidden>
+                <span id="photo-empty">No photo</span>
+              </div>
+              <div class="photo-actions">
+                <input class="visually-hidden" type="file" id="photo-input" accept="image/jpeg,image/png,image/webp">
+                <label class="btn btn--ghost" for="photo-input">Add photo</label>
+                <button type="button" class="btn btn--text" id="photo-remove" hidden>Remove photo</button>
+                <p class="hint">Optional. Cropped to a square and kept only in this browser.</p>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="field">
+                <label for="f-name">Full name</label>
+                <input id="f-name" type="text" data-path="personal.fullName" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="f-title">Job title</label>
+                <input id="f-title" type="text" data-path="personal.jobTitle" autocomplete="organization-title">
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" type="text" inputmode="email" data-path="personal.email" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" type="text" inputmode="tel" data-path="personal.phone" autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="f-location">Location</label>
+                <input id="f-location" type="text" data-path="personal.location" autocomplete="address-level2" placeholder="City, Country">
+              </div>
+              <div class="field">
+                <label for="f-website">Website or LinkedIn</label>
+                <input id="f-website" type="text" data-path="personal.website" autocomplete="url">
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="panel" open>
+          <summary>Summary</summary>
+          <div class="panel__body">
+            <div class="field">
+              <label for="f-summary">About you</label>
+              <textarea id="f-summary" rows="4" data-path="summary"></textarea>
+              <p class="hint">Two or three sentences on what you do and what you're good at.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="panel" open>
+          <summary>Experience</summary>
+          <div class="panel__body">
+            <ul class="items" id="list-experience" data-empty="No jobs added yet."></ul>
+            <button type="button" class="btn btn--ghost" data-action="add" data-list="experience">Add job</button>
+          </div>
+        </details>
+
+        <details class="panel">
+          <summary>Education</summary>
+          <div class="panel__body">
+            <ul class="items" id="list-education" data-empty="No education added yet."></ul>
+            <button type="button" class="btn btn--ghost" data-action="add" data-list="education">Add education</button>
+          </div>
+        </details>
+
+        <details class="panel">
+          <summary>Projects</summary>
+          <div class="panel__body">
+            <ul class="items" id="list-projects" data-empty="No projects added yet."></ul>
+            <button type="button" class="btn btn--ghost" data-action="add" data-list="projects">Add project</button>
+          </div>
+        </details>
+
+        <details class="panel">
+          <summary>Skills</summary>
+          <div class="panel__body">
+            <div class="field">
+              <label for="f-skills">Your skills</label>
+              <input id="f-skills" type="text" data-path="skills" autocomplete="off">
+              <p class="hint">Separate each skill with a comma.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="panel">
+          <summary>Languages</summary>
+          <div class="panel__body">
+            <div class="field">
+              <label for="f-languages">Languages you speak</label>
+              <input id="f-languages" type="text" data-path="languages" autocomplete="off">
+              <p class="hint">Separate each language with a comma, for example "English (native), Hindi (fluent)".</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="editor__foot">
+          <button type="button" class="btn btn--ghost" id="example-btn">Load example</button>
+          <button type="button" class="btn btn--text btn--danger" id="reset-btn">Clear all fields</button>
+          <p class="hint">Everything stays in this browser. Nothing is uploaded.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="preview" id="preview" aria-label="Resume preview">
+      <div class="stage" id="stage">
+        <div class="sheet-frame" id="sheet-frame">
+          <div class="sheet" id="resume-sheet"></div>
+        </div>
+        <p class="preview__note">The red line shows roughly where a new page starts.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
